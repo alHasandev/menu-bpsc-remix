@@ -18,7 +18,7 @@ export default function Index() {
       <header className="container mx-auto mb-4">
         <h1>Menu BPSC</h1>
       </header>
-      <article className="container mx-auto">
+      <article className="container mx-auto pb-16">
         <ItemList items={items} />
       </article>
     </main>
