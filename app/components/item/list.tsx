@@ -85,11 +85,12 @@ export const ItemList = ({ items }: ItemListProps) => {
 
   return (
     <>
-      <ul className="flex flex-col gap-4 text-sm">
+      <ul className="flex flex-col gap-4 text-sm" data-cy="menu-list">
         {filteredItems.map((item) => (
           <li key={item.id}>
             <button
               className="flex w-full items-center gap-2 rounded-full border bg-slate-50 py-1 pl-4 pr-1 hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-gray-500 sm:pl-6"
+              name={`menu-item-${item.id}`}
               onClick={() => addCartItem(item)}
               disabled={Number(item.stock) === 0}
             >

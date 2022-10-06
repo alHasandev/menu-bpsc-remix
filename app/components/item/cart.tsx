@@ -27,11 +27,13 @@ const CartDisplay = ({ sum, items, onClickItem }: CartDisplayProps) => {
           className={`container inset-x-0 max-h-60 overflow-y-auto rounded-3xl border bg-white shadow-lg ${
             sum.totalItem === 0 ? "pointer-events-none invisible" : ""
           } ${!showDetail ? "absolute" : ""}`}
+          data-cy="cart-list"
         >
           {items.map((cartItem) => (
             <li key={cartItem.id} className="">
               <button
                 className="flex w-full items-center gap-2 rounded-full py-1 pl-4 pr-1 hover:bg-slate-100 sm:pl-6"
+                name={`chart-item-${cartItem.id}`}
                 onClick={() => onClickItem?.(cartItem)}
               >
                 <span className="">{cartItem.name}</span>
@@ -44,7 +46,7 @@ const CartDisplay = ({ sum, items, onClickItem }: CartDisplayProps) => {
           ))}
         </ul>
       </div>
-      <div className="container mx-auto">
+      <div className="container mx-auto" data-cy="cart-toggle">
         <button
           className="flex w-full items-center gap-2 rounded-3xl border bg-white py-1 pl-4 pr-1 shadow-lg hover:bg-slate-100 disabled:cursor-not-allowed disabled:text-gray-500 sm:pl-6"
           disabled={sum.totalItem === 0}
