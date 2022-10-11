@@ -41,10 +41,10 @@ const RouteItem = (props: {
     >
       <Link
         to={props.route}
-        className={`flex flex-col items-center justify-center px-4 lg:h-10 lg:flex-row lg:justify-start lg:gap-2 lg:px-0 ${
+        className={`flex flex-col items-center justify-center px-4 font-semibold lg:h-10 lg:flex-row lg:justify-start lg:gap-2 lg:px-0 lg:font-bold ${
           location.pathname === props.route
-            ? "font-bold text-blue-600 before:absolute before:-left-4 before:h-16 before:w-4 before:rounded-tr-full before:bg-blue-400 after:absolute after:-right-4 after:h-16 after:w-4 after:rounded-tl-full after:bg-blue-400 lg:before:-right-6 lg:before:-left-6 lg:before:-top-6 lg:before:h-6 lg:before:w-auto lg:before:rounded-tr-none lg:before:rounded-br-full lg:after:-bottom-6 lg:after:-right-6 lg:after:-left-6 lg:after:h-6 lg:after:w-auto lg:after:rounded-tl-none lg:after:rounded-tr-full"
-            : "font-medium text-white"
+            ? "text-blue-600 before:absolute before:-left-4 before:h-16 before:w-4 before:rounded-tr-full before:bg-blue-400 after:absolute after:-right-4 after:h-16 after:w-4 after:rounded-tl-full after:bg-blue-400 lg:before:-right-6 lg:before:-left-6 lg:before:-top-6 lg:before:h-6 lg:before:w-auto lg:before:rounded-tr-none lg:before:rounded-br-full lg:after:-bottom-6 lg:after:-right-6 lg:after:-left-6 lg:after:h-6 lg:after:w-auto lg:after:rounded-tl-none lg:after:rounded-tr-full"
+            : "text-white"
         }`}
       >
         <span className="">{props.icon}</span>
