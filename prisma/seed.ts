@@ -1,19 +1,20 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { getSeedCategories, getSeedItems } from "~/utils/google/sheet";
 
 const prisma = new PrismaClient();
 
 async function seed() {
-  const email = "rachel@remix.run";
+  const email = "admin@bpsc.bjm.id";
 
   // cleanup the existing database
   await prisma.user.delete({ where: { email } }).catch(() => {
     // no worries if it doesn't exist yet
   });
 
-  const hashedPassword = await bcrypt.hash("racheliscool", 10);
+  const hashedPassword = await bcrypt.hash("adminbpsc", 10);
 
-  const user = await prisma.user.create({
+  await prisma.user.create({
     data: {
       email,
       password: {
@@ -24,20 +25,44 @@ async function seed() {
     },
   });
 
-  await prisma.note.create({
-    data: {
-      title: "My first note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
+  await getSeedCategories().then((categories) => {
+    return Promise.all(
+      categories.map(async (category) => {
+        await prisma.category.upsert({
+          where: {
+            id: category.id,
+          },
+          update: {
+            name: category.name,
+          },
+          create: {
+            id: category.id,
+            name: category.name,
+          },
+        });
+      })
+    );
   });
 
-  await prisma.note.create({
-    data: {
-      title: "My second note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
+  await getSeedItems().then((items) => {
+    return Promise.all(
+      items.map(async (item) => {
+        await prisma.item.create({
+          data: {
+            id: item.id,
+            name: item.name,
+            purchase: Number(item.purchase),
+            price: Number(item.price),
+            stock: Number(item.stock),
+            category: {
+              connect: {
+                id: item.category,
+              },
+            },
+          },
+        });
+      })
+    );
   });
 
   console.log(`Database has been seeded. 🌱`);

@@ -21,3 +21,36 @@ export const getItems = async () => {
     };
   });
 };
+
+export const getSeedItems = async () => {
+  doc.useApiKey("AIzaSyC-No9k-dzClcP3qELJbkszkTZZMXGheLQ");
+  await doc.loadInfo();
+  const itemsDataset = doc.sheetsByTitle["seed_items"];
+
+  const rows = await itemsDataset.getRows();
+  return rows.map((row) => {
+    return {
+      id: row.id,
+      name: row.name,
+      purchase: row.purchase,
+      price: row.price,
+      category: row.category,
+      stock: row.stock,
+    };
+  });
+};
+
+export const getSeedCategories = async () => {
+  doc.useApiKey("AIzaSyC-No9k-dzClcP3qELJbkszkTZZMXGheLQ");
+  await doc.loadInfo();
+  const categoriesDataset = doc.sheetsByTitle["seed_categories"];
+
+  const rows = await categoriesDataset.getRows();
+  return rows.map((row) => {
+    return {
+      id: row.id,
+      name: row.name,
+      unit: row.unit,
+    };
+  });
+};

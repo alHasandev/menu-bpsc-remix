@@ -36,3 +36,19 @@ model Note {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String
 }
+
+model Item {
+  id         String   @id @default(cuid())
+  name       String   @unique
+  purchase   Float
+  price      Float
+  stock      Int
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId String
+}
+
+model Category {
+  id   String @id @default(cuid())
+  name String @unique
+  Item Item[]
+}

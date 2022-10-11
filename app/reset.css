@@ -1,4 +1,4 @@
-button, button::before, button::after, a, a::before, a::after, *:active {
+button, button::before, button::after, a, a::before, a::after, a:active {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
