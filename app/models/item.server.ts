@@ -47,7 +47,38 @@ export function createItem({
   });
 }
 
-export function deleteNote({ id }: Pick<Item, "id">) {
+export function updateItem({
+  id,
+  name,
+  purchase,
+  price,
+  stock,
+  categoryId,
+}: Partial<
+  Pick<Item, "name" | "purchase" | "price" | "stock"> & {
+    categoryId: Category["id"];
+  }
+> &
+  Pick<Item, "id">) {
+  return prisma.item.update({
+    where: {
+      id,
+    },
+    data: {
+      name,
+      purchase,
+      price,
+      stock,
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+  });
+}
+
+export function deleteItem({ id }: Pick<Item, "id">) {
   return prisma.item.deleteMany({
     where: { id },
   });
