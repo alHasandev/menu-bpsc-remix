@@ -51,7 +51,7 @@ const columns = [
     id: "action",
     header: () => <div className="text-center">Aksi</div>,
     cell: (info) => (
-      <div className="flex items-center justify-center gap-1 text-center">
+      <div className="ml-auto flex items-center justify-center gap-1 text-center">
         <Link
           to={info.row.original.id}
           className="inline-block rounded bg-blue-400 px-2 py-1 text-xs font-medium tracking-wider text-slate-50"

@@ -19,8 +19,8 @@ export function Table<TData>({
   });
 
   return (
-    <table className="w-full border-collapse border text-sm">
-      <thead className="sticky top-0">
+    <table className="w-full border-collapse text-sm sm:border">
+      <thead className="sticky top-0 hidden sm:table-row-group">
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id} className="border">
             {headerGroup.headers.map((header) => (
@@ -39,11 +39,14 @@ export function Table<TData>({
           </tr>
         ))}
       </thead>
-      <tbody>
+      <tbody className="flex flex-col gap-4 sm:table-row-group">
         {table.getRowModel().rows.map((row) => (
-          <tr key={row.id} className="border">
+          <tr key={row.id} className="flex flex-col border py-2 sm:table-row">
             {row.getVisibleCells().map((cell) => (
-              <td key={cell.id} className="h-8 px-3">
+              <td
+                key={cell.id}
+                className="flex h-8 items-center px-3 sm:table-cell"
+              >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
