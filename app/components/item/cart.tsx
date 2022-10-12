@@ -1,7 +1,6 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { ItemWithCategory } from "~/models/item.server";
 import { rupiah } from "~/utils/currency";
-// import type { CartItem, CartSum } from "./types";
 
 export type CartItem = ItemWithCategory & {
   quantity: number;
