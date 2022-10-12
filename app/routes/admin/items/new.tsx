@@ -87,8 +87,9 @@ const NewItemForm = () => {
             id="categoryId"
             name="categoryId"
             className="rounded-md border px-4 py-2 outline-none ring-offset-white focus:ring-2 focus:ring-offset-1"
+            defaultValue={""}
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               Pilih kategori
             </option>
             {categories.map((category) => (
